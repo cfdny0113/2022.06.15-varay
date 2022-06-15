@@ -1,0 +1,341 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: :9090
+proxies:
+  - {name: 请牢记以下备注, server: sg1.31vpn.com, port: 443, type: vmess, uuid: 9dc0c6aa-39a1-46be-9938-85999e3c3498, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, network: ws, ws-opts: {path: /fastssh/11144/62a98bd8a6993/, headers: {Host: sg1.31vpn.com}}, udp: true}
+  - {name: 需要节点添加, server: sg1.31vpn.com, port: 80, type: vmess, uuid: 9dc0c6aa-39a1-46be-9938-85999e3c3498, alterId: 0, cipher: auto, tls: false, skip-cert-verify: false, network: ws, ws-opts: {path: /fastssh/11144/62a98bd8a6993/, headers: {Host: sg1.31vpn.com}}, udp: true}
+  - {name: 以下QQ, server: us1.31vpn.com, port: 443, type: vmess, uuid: ff382d09-becd-41cb-8e4f-3e256b27de47, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, network: ws, ws-opts: {path: /fastssh/14722/62a98c2f857a7/, headers: {Host: us1.31vpn.com}}, udp: true}
+  - {name: 3480137367, server: us1.31vpn.com, port: 80, type: vmess, uuid: ff382d09-becd-41cb-8e4f-3e256b27de47, alterId: 0, cipher: auto, tls: false, skip-cert-verify: false, network: ws, ws-opts: {path: /fastssh/14722/62a98c2f857a7/, headers: {Host: us1.31vpn.com}}, udp: true}
+proxy-groups:
+  - name: 🔰 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: ♻️ 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: 🎥 NETFLIX
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: ⛔️ 广告拦截
+    type: select
+    proxies:
+      - 🛑 全球拦截
+      - 🎯 全球直连
+      - 🔰 节点选择
+  - name: 🚫 运营劫持
+    type: select
+    proxies:
+      - 🛑 全球拦截
+      - 🎯 全球直连
+      - 🔰 节点选择
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: 🌏 国内媒体
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - 🔰 节点选择
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - 🔰 节点选择
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: 📲 电报信息
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - 🎯 全球直连
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+rules:
+ - DOMAIN-SUFFIX,local,🎯 全球直连
+ - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
+ - IP-CIDR,10.0.0.0/8,🎯 全球直连,no-resolve
+ - IP-CIDR,172.16.0.0/12,🎯 全球直连,no-resolve
+ - IP-CIDR,127.0.0.0/8,🎯 全球直连,no-resolve
+ - IP-CIDR,100.64.0.0/10,🎯 全球直连,no-resolve
+ - IP-CIDR6,::1/128,🎯 全球直连,no-resolve
+ - IP-CIDR6,fc00::/7,🎯 全球直连,no-resolve
+ - IP-CIDR6,fe80::/10,🎯 全球直连,no-resolve
+ - IP-CIDR6,fd00::/8,🎯 全球直连,no-resolve
+ - DOMAIN-KEYWORD,1drv,Ⓜ️ 微软服务
+ - DOMAIN-KEYWORD,microsoft,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,aadrm.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,acompli.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,acompli.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,aka.ms,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,akadns.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,aspnetcdn.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,assets-yammer.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,azure.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,azure.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,azureedge.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,azurerms.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,bing.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,cloudapp.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,cloudappsecurity.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,edgesuite.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,gfx.ms,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,hotmail.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,live.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,live.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,lync.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msappproxy.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msauth.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msauthimages.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msecnd.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msedge.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msft.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msftauth.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msftauthimages.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msftidentity.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msidentity.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msn.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msocdn.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msocsp.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,mstea.ms,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,o365weve.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,oaspapps.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,office.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,office.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,office365.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,officeppe.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,omniroot.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,onedrive.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,onenote.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,onenote.net,Ⓜ️ 微软port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: :9090
+proxies:
+  - {name: 请牢记以下备注, server: sg1.31vpn.com, port: 443, type: vmess, uuid: 9dc0c6aa-39a1-46be-9938-85999e3c3498, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, network: ws, ws-opts: {path: /fastssh/11144/62a98bd8a6993/, headers: {Host: sg1.31vpn.com}}, udp: true}
+  - {name: 需要节点添加, server: sg1.31vpn.com, port: 80, type: vmess, uuid: 9dc0c6aa-39a1-46be-9938-85999e3c3498, alterId: 0, cipher: auto, tls: false, skip-cert-verify: false, network: ws, ws-opts: {path: /fastssh/11144/62a98bd8a6993/, headers: {Host: sg1.31vpn.com}}, udp: true}
+  - {name: 以下QQ, server: us1.31vpn.com, port: 443, type: vmess, uuid: ff382d09-becd-41cb-8e4f-3e256b27de47, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, network: ws, ws-opts: {path: /fastssh/14722/62a98c2f857a7/, headers: {Host: us1.31vpn.com}}, udp: true}
+  - {name: 3480137367, server: us1.31vpn.com, port: 80, type: vmess, uuid: ff382d09-becd-41cb-8e4f-3e256b27de47, alterId: 0, cipher: auto, tls: false, skip-cert-verify: false, network: ws, ws-opts: {path: /fastssh/14722/62a98c2f857a7/, headers: {Host: us1.31vpn.com}}, udp: true}
+proxy-groups:
+  - name: 🔰 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: ♻️ 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: 🎥 NETFLIX
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: ⛔️ 广告拦截
+    type: select
+    proxies:
+      - 🛑 全球拦截
+      - 🎯 全球直连
+      - 🔰 节点选择
+  - name: 🚫 运营劫持
+    type: select
+    proxies:
+      - 🛑 全球拦截
+      - 🎯 全球直连
+      - 🔰 节点选择
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: 🌏 国内媒体
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - 🔰 节点选择
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - 🔰 节点选择
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: 📲 电报信息
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - 🎯 全球直连
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - 请牢记以下备注
+      - 需要节点添加
+      - 以下QQ
+      - 3480137367
+rules:
+ - DOMAIN-SUFFIX,local,🎯 全球直连
+ - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
+ - IP-CIDR,10.0.0.0/8,🎯 全球直连,no-resolve
+ - IP-CIDR,172.16.0.0/12,🎯 全球直连,no-resolve
+ - IP-CIDR,127.0.0.0/8,🎯 全球直连,no-resolve
+ - IP-CIDR,100.64.0.0/10,🎯 全球直连,no-resolve
+ - IP-CIDR6,::1/128,🎯 全球直连,no-resolve
+ - IP-CIDR6,fc00::/7,🎯 全球直连,no-resolve
+ - IP-CIDR6,fe80::/10,🎯 全球直连,no-resolve
+ - IP-CIDR6,fd00::/8,🎯 全球直连,no-resolve
+ - DOMAIN-KEYWORD,1drv,Ⓜ️ 微软服务
+ - DOMAIN-KEYWORD,microsoft,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,aadrm.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,acompli.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,acompli.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,aka.ms,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,akadns.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,aspnetcdn.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,assets-yammer.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,azure.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,azure.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,azureedge.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,azurerms.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,bing.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,cloudapp.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,cloudappsecurity.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,edgesuite.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,gfx.ms,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,hotmail.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,live.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,live.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,lync.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msappproxy.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msauth.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msauthimages.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msecnd.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msedge.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msft.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msftauth.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msftauthimages.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msftidentity.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msidentity.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msn.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msocdn.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,msocsp.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,mstea.ms,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,o365weve.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,oaspapps.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,office.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,office.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,office365.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,officeppe.net,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,omniroot.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,onedrive.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,onenote.com,Ⓜ️ 微软服务
+ - DOMAIN-SUFFIX,onenote.net,Ⓜ️ 微软
